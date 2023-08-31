@@ -548,34 +548,6 @@ Header Style
   letter-spacing: 0.3px;
 }
 
-/* .header-area .main-nav .nav li:last-child a {
-  background-color: #27292a;
-  padding: 8px 10px 8px 20px;
-  border-radius: 23px;
-} */
-
-/* .header-area .main-nav .nav li:last-child a img {
-  max-width: 30px;
-  border-radius: 50%;
-  margin-left: 5px;
-}
-
-.header-area .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover,
-.background-header .main-nav .nav li.has-sub ul.sub-menu li:last-child a:hover {
-  padding-left: 25px !important;
-} */
-
-/* .header-area .main-nav .nav li:hover a,
-.header-area .main-nav .nav li a.active {
-  color: #e75e8d !important;
-}
-
-.header-area .main-nav .nav li:last-child:hover a,
-.header-area .main-nav .nav li:last-child a.active {
-  color: #fff !important;
-  background-color: #e75e8d !important;
-} */
-
 .header-area .main-nav .nav li:hover a,
 .header-area .main-nav .nav li a.active {
   color: #fff !important;
@@ -1956,7 +1928,6 @@ My Customization
   width: 100%;
 }
 
-
 .lgn-inputs .item-button .col-lg-12 .main-button a {
   width: 50%;
   background-color: #F0B12F;
@@ -1969,12 +1940,43 @@ My Customization
 
 /* Mobil görünüm için media query */
 @media screen and (max-width: 576px) {
-  .main-login {
-    max-width: 100%;
-    /* Container'ın genişliğini tam ekran olacak şekilde ayarla */
-    padding: 15px;
-    /* Daha az padding ver */
+  body {
+    background-size: auto auto;
+    /* Genişliği sabit bırak, yüksekliği 100% olarak ayarla */
+    background-position: center;
+    /* Görüntüyü yatayda ortala */
+    background-repeat: no-repeat;
+    background-position: center center;
+  }
+
+  .header-area .main-nav {
     width: 90%;
+    display: contents;
+    position: fixed;
+  }
+
+  .header-area .main-nav .logo {
+    /* border-right: 1px solid #27292a; */
+    /* flex-basis: 1%; */
+    /* margin-right: 10%; */
+    -webkit-transition: all 0.3s ease 0s;
+    -moz-transition: all 0.3s ease 0s;
+    -o-transition: all 0.3s ease 0s;
+    transition: all 0.3s ease 0s;
+  }
+
+  .header-area .main-nav .logo img {
+    width: 100px;
+    margin-left: -50%;
+    margin-bottom: 10%;
+  }
+
+  .main-login {
+    border-radius: 23px;
+    padding: 10px;
+    max-width: 100%;
+    width: 100%;
+    z-index: 5;
   }
 
   .main-profile .lgn-container {
@@ -1982,6 +1984,30 @@ My Customization
     /* Container'ın genişliğini tam ekran olacak şekilde ayarla */
     margin: 20px 20px;
     /* Daha az boşluk ver */
+  }
+
+
+  .lgn-inputs .item-text {
+    padding: 10px 10px;
+    width: 80%;
+    z-index: 5;
+    border-style: groove;
+    position: relative;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .lgn-inputs .item-button {
+    padding-top: 5%;
+  }
+
+  .lgn-inputs .item-button .col-lg-12 {
+    width: 100%;
+  }
+
+  .lgn-inputs .item-button .col-lg-12 .main-button {
+    width: 100%;
   }
 }
 
