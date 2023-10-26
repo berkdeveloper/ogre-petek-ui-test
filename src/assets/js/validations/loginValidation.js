@@ -8,12 +8,12 @@ if (document.getElementById("open-game") !== null) {
     document.getElementById("open-game").addEventListener("click", async function () {
         const inputTextList = document.getElementsByTagName("input")
         var isCheck = false;
+
         for (let index = 0; index < inputTextList.length; index++) {
             const element = inputTextList[index];
             if (element.type == "text") {
-                isCheck = true;
-                if (element.value == "") {
-                    isCheck = false;
+                if (element.value !== "") {
+                    isCheck = true;
                 }
 
                 if (document.getElementById("branch-dropdown") !== null && document.getElementById("branch-dropdown").value == "none") {
@@ -22,21 +22,35 @@ if (document.getElementById("open-game") !== null) {
             }
         }
 
-        for (let index = 0; index < inputTextList.length; index++) {
-            const element = inputTextList[index];
-            if (element.type == "text") {
-                if (element.value == "") {
-                    isCheck = false;
-                }
+        // for (let index = 0; index < inputTextList.length; index++) {
+        //     const element = inputTextList[index];
+        //     if (element.type == "text") {
+        //         isCheck = true;
+        //         if (element.value == "") {
+        //             isCheck = false;
+        //         }
 
-                if (document.getElementById("branch-dropdown") !== null && document.getElementById("branch-dropdown").value == "none") {
-                    isCheck = false;
-                }
-            }
-        }
+        //         if (document.getElementById("branch-dropdown") !== null && document.getElementById("branch-dropdown").value == "none") {
+        //             isCheck = false;
+        //         }
+        //     }
+        // }
+
+        // for (let index = 0; index < inputTextList.length; index++) {
+        //     const element = inputTextList[index];
+        //     if (element.type == "text") {
+        //         if (element.value == "") {
+        //             isCheck = false;
+        //         }
+
+        //         if (document.getElementById("branch-dropdown") !== null && document.getElementById("branch-dropdown").value == "none") {
+        //             isCheck = false;
+        //         }
+        //     }
+        // }
 
         if (isCheck === false) {
-            alert("Lütfen tüm alanları doldurunuz!")
+            alert("Lütfen gerekli alanları doldurunuz!");
         } else {
             const responseValue = await login();
             console.log(`response alındı:`, responseValue);
@@ -128,6 +142,12 @@ function redirectToGamePage(userId) {
         window.location.href = urlOrigin + "ogre-petek-ui-test/src/" + "games/index.html" + param;
     } else if (urlOrigin === "http://127.0.0.1:5500") {
         window.location.href = "http://127.0.0.1:5500/src/games/index.html" + param;
+    } else if (urlOrigin === "https://127.0.0.1:5501") {
+        window.location.href = "https://127.0.0.1:5501/src/games/index.html" + param;
+    } else if (urlOrigin === "http://petekegitim.xyz") {
+        window.location.href = "http://petekegitim.xyz/src/games/index.html" + param;
+    } else if (urlOrigin === "https://ogre-game-company.github.io") {
+        window.location.href = urlOrigin + "/ogre-petek-ui/src/" + "games/index.html" + param;
     }
 }
 
@@ -135,7 +155,7 @@ function redirectToGamePage(userId) {
 function setEncryptedUserIdToCookie(userId) {
     const secretKey = CONFIGS.Secret_Key; // Güçlü bir anahtar seçin
     const encryptedUserId = encryptUserId(userId, secretKey);
-    setCookie('sessionId', encryptedUserId, 5); // 30 dakika süresince geçerli çerez oluşturma
+    setCookie('sessionId', encryptedUserId, 30); // 30 saniye süresince geçerli çerez oluşturma
 }
 
 function encryptUserId(userId, secretKey) {
@@ -145,7 +165,7 @@ function encryptUserId(userId, secretKey) {
 
 function setCookie(name, value, time) {
     const expires = new Date();
-    expires.setMinutes(expires.getMinutes() + time);
+    expires.setSeconds(expires.getSeconds() + time);
     const encodedValue = encodeURIComponent(value);
     const cookieValue = `${name}=${encodedValue}${time ? `; expires=${expires.toUTCString()}` : ''}`;
     document.cookie = cookieValue;
